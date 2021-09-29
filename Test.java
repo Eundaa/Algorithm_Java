@@ -1,38 +1,42 @@
 import java.util.*;
 
-public class Test{
+public class Test {
 
-    public static void main(String[] args){
-        int[] prices = {5, 3, 7, 9, 5, 2, 4, 9, 10, 6};
-        // List<Integer> answer = new ArrayList<>();
-        int[] answer = new int[prices.length];
-        for(int i = 0; i < prices.length; i++){
-            int now = prices[i];
-            int number = 0;
-            int[] temp = Arrays.copyOfRange(prices, i, prices.length);
-            Arrays.sort(temp);
-            // for(int j = 0; j < temp.length; j++){
-            //     if(temp[j] >= now){
-            //         number = temp.length - j;
-            //         break;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-            //     }
-            // }
-            // while(temp)
-            int index = Arrays.binarySearch(temp,now);
-            // int index = Arrays.asList(temp).indexOf(now);
-            number = temp.length - index+1;
-            // for (int j = i; j < prices.length - 1; j++){
-            //     if(prices[j + 1] > now){
-            //         number += 1;
-            //     }
-            // }
-            // answer.add(number);
-            answer[i] = number;
+        int n, m, k;
+        n = sc.nextInt();
+        m = sc.nextInt();
+        k = sc.nextInt();
+
+        int[] list = new int[n];
+        for (int i = 0; i < n; i++) {
+            list[i] = sc.nextInt();
         }
-        for(int value : answer){
-            System.out.print(value + " ");
+        Arrays.sort(list);
+        int max1 = list[n - 1];
+        int max2 = list[n - 2];
+
+        int sum = 0;
+        int count = 1;
+
+        // for (int i = 0; i < m; i++) {
+        while (true) {
+            sum += max1;
+            count++;
+            m -= 1;
+            if (count == k + 1) {
+                sum += max2;
+                count = 1;
+                m -= 1;
+            }
+            if (m == 0) {
+                break;
+            }
         }
+
+        System.out.println(sum);
     }
 
 }
