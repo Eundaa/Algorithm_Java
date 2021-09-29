@@ -20,22 +20,19 @@ public class Problem02 {
         int max2 = list[n - 2];
 
         int sum = 0;
-        int count = 1;
+        // Idea1 : 문제 그대로 구현
+        /*
+         * int count = 1;
+         * 
+         * while (true) { sum += max1; count++; m -= 1; if (count == k + 1) { sum +=
+         * max2; count = 1; m -= 1; } if (m == 0) { break; } }
+         */
 
-        // for (int i = 0; i < m; i++) {
-        while (true) {
-            sum += max1;
-            count++;
-            m -= 1;
-            if (count == k + 1) {
-                sum += max2;
-                count = 1;
-                m -= 1;
-            }
-            if (m == 0) {
-                break;
-            }
-        }
+        // Idea2 : count는 가장 큰 수를 더하는 횟수
+        int count = k * (m / (k + 1)) + (m % (k + 1));
+
+        sum += count * max1;
+        sum += (m - count) * max2;
 
         System.out.println(sum);
     }
