@@ -1,3 +1,5 @@
+package Programmers.Weekly;
+
 import java.util.*;
 
 class Solution {
